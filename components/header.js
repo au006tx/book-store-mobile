@@ -7,9 +7,7 @@ export default class HeaderTitle extends Component {
     return (      
       <View style={{backgroundColor:'#5FC9F8', height:50, alignItems:'center', flexDirection:'row', justifyContent:'center'}}>
         <Text style={{alignItems:'center', paddingHorizontal:100, fontSize:30}}>{this.props.name}</Text>
-      </View>
-          
-          
+      </View>    
         
     );
   }

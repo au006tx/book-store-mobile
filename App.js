@@ -1,16 +1,13 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, View, Alert, TextInput } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, View, Alert, TextInput, ScrollView } from 'react-native';
 
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 
-import  HeaderTitle  from './components/header';
-
 import { SafeAreaView } from 'react-navigation';
 
-import TodoList from './screens/home';
-
+import Router from './RouterComponent';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -30,6 +27,23 @@ export default class App extends React.Component {
     this.setState({ isReady: true });
   }
 
+
+  async _loadAssetsAsync() {
+    const imageAssets = cacheImages([
+      require('./assets/splash.png'),
+      require('./assets/icon/account_circle.png'),
+      require('./assets/icon/dashboard_off.png'),
+      require('./assets/icon/dashboard_on.png'),
+      require('./assets/icon/search_off.png'),
+      require('./assets/icon/search_on.png'),
+      require('./assets/icon/settings_off.png'),
+      require('./assets/icon/settings_on.png'),
+      require('./assets/icon/lock.png'),
+      require('./assets/icon/right-light.png'),
+      require('./assets/icon/go-back-blue.png'),
+    ]);
+  await Promise.all([...imageAssets]);
+  }
 
   onIncrement() {
     this.setState({
@@ -55,37 +69,29 @@ export default class App extends React.Component {
           onPress: () => console.log('Ok Pressed'),
         },
       ]);
-
     }  
   };
+
+  onReset() {
+    this.setState({
+      value : 0
+    });
+  }
 
 
   render() {
     if (!this.state.isReady) {
-      return <AppLoading />;
+      <AppLoading
+          startAsync={this._loadAssetsAsync}
+          onFinish={() => this.setState({ isReady : true})}
+          onError={console.warn}
+        />;
     }
 
     return (
-      <SafeAreaView forceInset={{ top: "always" }} >
-        <HeaderTitle name='Home' />
-        <View>
-          <Text>
-            Welcome
-          </Text>
-          <Text>
-            {this.state.value}
-          </Text>
-          <TouchableOpacity onPress={() => this.onIncrement()}>
-            <Text> Increment </Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.onDecrement()}>
-            <Text> Decrement </Text>
-          </TouchableOpacity>
-          <TodoList />
 
-        </View>
+      <Router scheme="boost" url_scheme="boost.app" />
 
-      </SafeAreaView> 
     );
   }
 }
