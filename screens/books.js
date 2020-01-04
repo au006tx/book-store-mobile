@@ -17,7 +17,7 @@ class BookList extends React.Component {
             books : [],
             searchTerm: ''  
         }
-        this.allBooks = this.allBooks.bind(this);
+        // this.allBooks = this.allBooks.bind(this);
     }
 
     componentDidMount() {
@@ -30,20 +30,20 @@ class BookList extends React.Component {
             });
     }
 
-    allBooks() {
-        return this.state.books.map((item,index) => (            
-            <View key={index} style={{borderColor: '#5FC9F8', borderWidth: 0.5, margin:2}} > 
-                <Image style={{width: 150, height: 150, resizeMode: 'contain'}} source={{uri:item.get_image}} />
-                <Text>
-                    {item.book_name} 
-                </Text> 
-                <TouchableOpacity style={{borderColor: '#5FC9F8', borderWidth: 0.5, margin:2, justifyContent:'center', flexDirection:'row', backgroundColor:'#5FC9F8'}}>
-                    <Text>Download</Text>
-                </TouchableOpacity>   
-            </View>  
-            )            
-        )
-    }
+    // allBooks() {
+    //     return this.state.books.map((item,index) => (            
+    //         <View key={index} style={{borderColor: '#5FC9F8', borderWidth: 0.5, margin:2}} > 
+    //             <Image style={{width: 150, height: 150, resizeMode: 'contain'}} source={{uri:item.get_image}} />
+    //             <Text>
+    //                 {item.book_name} 
+    //             </Text> 
+    //             <TouchableOpacity style={{borderColor: '#5FC9F8', borderWidth: 0.5, margin:2, justifyContent:'center', flexDirection:'row', backgroundColor:'#5FC9F8'}}>
+    //                 <Text>Download</Text>
+    //             </TouchableOpacity>   
+    //         </View>  
+    //         )            
+    //     )
+    // }
 
     searchUpdated(term) {
         this.setState({ searchTerm: term })

@@ -2,7 +2,7 @@ import React from 'react';
 import { Scene, Router, Lightbox } from 'react-native-router-flux';
 import { Image } from 'react-native';
 
-import { StackActions } from "react-navigation";
+
 
 
 import BooksList from './screens/books';

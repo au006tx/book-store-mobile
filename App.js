@@ -9,6 +9,7 @@ import { SafeAreaView } from 'react-navigation';
 
 import Router from './RouterComponent';
 
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -89,7 +90,7 @@ export default class App extends React.Component {
     }
 
     return (
-
+      
       <Router scheme="boost" url_scheme="boost.app" />
 
     );
